@@ -23,7 +23,7 @@ object Ex3Stacks:
   
   object StackImpl extends StackADT:
     import Sequence.*
-    type Stack[A] = Sequence[A]
+    opaque type Stack[A] = Sequence[A]
     def empty[A]: Stack[A] = Nil()
     extension [A](stack: Stack[A])
       def push(a: A): Stack[A] = stack match
