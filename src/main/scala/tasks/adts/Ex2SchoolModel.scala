@@ -30,9 +30,14 @@ object SchoolModel:
       def coursesOfATeacher(teacher: Teacher): Sequence[Course]
 
   object baseSchool extends SchoolModule:
-    type School
-    type Teacher
-    type Course
+    private case class SchoolImpl(teachers: Sequence[Teacher], courses: Sequence[Course])
+    private case class TeacherImpl(name: String, courses: Sequence[Course])
+    private case class CourseImpl(name: String)
+
+    opaque type School = SchoolImpl
+    opaque type Teacher = TeacherImpl
+    opaque type Course = CourseImpl
+    
     extension (school: School)
       def addTeacher(name: String): School = ???
       def addCourse(name: String): School = ???
