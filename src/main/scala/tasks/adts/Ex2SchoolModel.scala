@@ -1,7 +1,6 @@
 package tasks.adts
 import u03.Sequences.*
 import u03.Optionals.*
-import u02.AlgebraicDataTypes.Person
 
 /*  Exercise 2: 
  *  Implement the below trait, and write a meaningful test.
