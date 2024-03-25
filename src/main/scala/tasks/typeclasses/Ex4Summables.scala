@@ -29,6 +29,9 @@ object Ex4Summables:
     def zero: Int = 0
   
   // write givens for Summable[Double] and Summable[String]
+  given Summable[Double] with
+    def sum(a1: Double, a2: Double): Double = a1 + a2
+    def zero: Double = 0.toDouble
 
   @main def trySummables =
     val si = Cons(10, Cons(20, Cons(30, Nil())))  
@@ -40,11 +43,11 @@ object Ex4Summables:
     println:
       sumAll(si) // 60
 
-    /*
     val sd = Cons(10.0, Cons(20.0, Cons(30.0, Nil())))  
     println:
       sumAll(sd) // 60.0
 
+    /*
     val ss = Cons("10", Cons("20", Cons("30", Nil())))  
     println:
       sumAll(ss) // "102030"
