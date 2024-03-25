@@ -18,9 +18,11 @@ object Ex4Summables:
     def sum(a1: A, a2: A): A
     def zero: A
 
-  def sumAll[A: Summable](seq: Sequence[A]) = 
+  def sumAll[A: Summable](seq: Sequence[A]): A = 
     val summable = summon[Summable[A]]
-    ???  // complete here
+    seq match
+      case Cons(h, t) => summable.sum(h, sumAll(t))
+      case Nil() => summable.zero
 
   given Summable[Int] with
     def sum(a1: Int, a2: Int): Int = a1 + a2
@@ -33,11 +35,12 @@ object Ex4Summables:
     println:
       sumAllInt(si) // 60
 
-    /* uncomment from here   
+    // uncomment from here   
 
     println:
       sumAll(si) // 60
 
+    /*
     val sd = Cons(10.0, Cons(20.0, Cons(30.0, Nil())))  
     println:
       sumAll(sd) // 60.0
@@ -45,6 +48,5 @@ object Ex4Summables:
     val ss = Cons("10", Cons("20", Cons("30", Nil())))  
     println:
       sumAll(ss) // "102030"
-
-    */  
+  */
 
