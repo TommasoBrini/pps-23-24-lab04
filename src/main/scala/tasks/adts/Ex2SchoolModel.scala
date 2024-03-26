@@ -18,8 +18,8 @@ object SchoolModel:
     type School
     type Teacher
     type Course
-    def school(teachers: Sequence[Teacher], course: Sequence[Course]): School
-    def teacher(name: String): Teacher
+    def school(teachers: Sequence[Teacher], courses: Sequence[Course]): School
+    def teacher(name: String, courses: Sequence[Course]): Teacher
     def course(name: String): Course
     extension (school: School)
       def addTeacher(name: String): School
@@ -34,12 +34,18 @@ object SchoolModel:
   object basicSchool extends SchoolModule:
     import Sequence.* 
     
+    private case class TeacherImpl(name: String, courses: Sequence[Course])
+    private case class SchoolImpl(teachers: Sequence[Teacher], courses: Sequence[Course])
 
     opaque type Course = String
-    opaque type Teacher = (String, Sequence[Course])
-    opaque type School = (Sequence[Teacher], Sequence[Course]) 
+    opaque type Teacher = TeacherImpl
+    opaque type School = SchoolImpl 
     
-    def empty(): School = (Nil(), Nil())
+    def course(name: String): Course = name
+
+    def school(teachers: Sequence[Teacher], courses: Sequence[Course]): School = SchoolImpl(teachers, courses)
+
+    def teacher(name: String, courses: Sequence[Course]): Teacher = TeacherImpl(name, courses) 
 
     extension (school: School)
       def addTeacher(name: String): School = ???
