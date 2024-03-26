@@ -27,3 +27,15 @@ object SchoolModel:
       def nameOfCourse(teacher: Teacher): String
       def setTeacherToCourse(teacher: Teacher, course: Course): School
       def coursesOfATeacher(teacher: Teacher): Sequence[Course]
+    
+  object basicSchool:
+    private case class CourseImpl(name: String)
+    private case class TeacherImp(name: String, courses: Sequence[Course])
+    private case class SchoolImpl(teachers: Sequence[Teacher], courses: Sequence[Course])
+
+    opaque type Course = CourseImpl
+    opaque type Teacher = TeacherImp
+    opaque type School = SchoolImpl
+
+
+
