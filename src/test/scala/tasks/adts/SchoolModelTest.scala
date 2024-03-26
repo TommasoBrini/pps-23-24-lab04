@@ -33,6 +33,6 @@ class SchoolModelTest{
         assertEquals(Just(mal), mySchool.addTeacher("Maltoni").teacherByName("Maltoni"))
         
     @Test def testAddCourse() =
-        assertEquals(Cons("ML", Cons(pps, Cons(pcd, Cons(lcmc, Nil())))), mySchool.addCourse("ML"))
+        assertEquals(Just("ML"), mySchool.addCourse("ML").courseByName("ML"))
 
 }

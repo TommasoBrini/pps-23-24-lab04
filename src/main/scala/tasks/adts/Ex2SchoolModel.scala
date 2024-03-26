@@ -59,7 +59,11 @@ object SchoolModel:
         case Cons(_, t) => SchoolImpl(t, Nil()).teacherByName(name)
         case _ => Empty()
 
-      def courseByName(name: String): Optional[Course] = ???
+      def courseByName(name: String): Optional[Course] = s.courses match
+        case Cons(h, t) if h.equals(name) => Just(name)
+        case Cons(_, t) => SchoolImpl(s.teachers, t).courseByName(name)
+        case _ => Empty()
+      
       def nameOfTeacher(teacher: Teacher): String = ???
       def nameOfCourse(teacher: Teacher): String = ???
       def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
