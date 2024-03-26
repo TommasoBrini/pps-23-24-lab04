@@ -11,8 +11,7 @@ class SchoolModelTest{
     val bSchool: SchoolModule = basicSchool
     import bSchool.* 
 
-    @Test def testSchoolEmpty =
-        val school = empty()
-        assertEquals((Nil(), Nil()), school)
+    
 
+    
 }

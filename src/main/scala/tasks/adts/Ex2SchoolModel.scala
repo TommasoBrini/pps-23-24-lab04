@@ -18,7 +18,9 @@ object SchoolModel:
     type School
     type Teacher
     type Course
-    def empty(): School
+    def school(teachers: Sequence[Teacher], course: Sequence[Course]): School
+    def teacher(name: String): Teacher
+    def course(name: String): Course
     extension (school: School)
       def addTeacher(name: String): School
       def addCourse(name: String): School
@@ -31,12 +33,10 @@ object SchoolModel:
     
   object basicSchool extends SchoolModule:
     import Sequence.* 
+    
 
-    private case class CourseImpl(name: String)
-    private case class TeacherImp(name: String, courses: Sequence[Course])
-
-    opaque type Course = CourseImpl
-    opaque type Teacher = TeacherImp
+    opaque type Course = String
+    opaque type Teacher = (String, Sequence[Course])
     opaque type School = (Sequence[Teacher], Sequence[Course]) 
     
     def empty(): School = (Nil(), Nil())
