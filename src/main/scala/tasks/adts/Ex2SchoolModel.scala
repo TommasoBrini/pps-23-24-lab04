@@ -1,6 +1,7 @@
 package tasks.adts
 import u03.Sequences.*
 import u03.Optionals.*
+import u03.Optionals.Optional.*
 
 /*  Exercise 2: 
  *  Implement the below trait, and write a meaningful test.
@@ -18,6 +19,9 @@ object SchoolModel:
     type School
     type Teacher
     type Course
+    def course(name: String): Course
+    def school(teachers: Sequence[Teacher], courses: Sequence[Course]): School
+    def teacher(name: String, courses: Sequence[Course]): Teacher
     extension (school: School)
       def addTeacher(name: String): School
       def addCourse(name: String): School
@@ -50,13 +54,13 @@ object SchoolModel:
       def addCourse(name: String): School = 
         school(s.teachers, Cons(name, s.courses))
       
-      def teacherByName(name: String): Optional[Teacher] = ???
+      def teacherByName(name: String): Optional[Teacher] = s.teachers match
+        case Cons(h, _) if h.name.equals(name) => Just(h)
+        case Cons(_, t) => SchoolImpl(t, Nil()).teacherByName(name)
+        case _ => Empty()
+
       def courseByName(name: String): Optional[Course] = ???
       def nameOfTeacher(teacher: Teacher): String = ???
       def nameOfCourse(teacher: Teacher): String = ???
       def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
       def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
-
-      def getTeachers: Sequence[Teacher] = s.teachers
-      def getCourses: Sequence[Course] = s.courses
-
