@@ -35,4 +35,8 @@ class SchoolModelTest{
     @Test def testAddCourse() =
         assertEquals(Just("ML"), mySchool.addCourse("ML").courseByName("ML"))
 
+    @Test def testNameOfTeacher() =
+        assertEquals("Viroli", mySchool.nameOfTeacher(vir))
+
+    @Test def tes
 }

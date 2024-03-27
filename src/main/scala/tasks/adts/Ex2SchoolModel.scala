@@ -64,7 +64,9 @@ object SchoolModel:
         case Cons(_, t) => SchoolImpl(s.teachers, t).courseByName(name)
         case _ => Empty()
       
-      def nameOfTeacher(teacher: Teacher): String = ???
+      def nameOfTeacher(teacher: Teacher): String = teacher.name
+
       def nameOfCourse(teacher: Teacher): String = ???
+      
       def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
       def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
