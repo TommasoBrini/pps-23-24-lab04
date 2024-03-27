@@ -1,7 +1,9 @@
 package tasks.adts
-import u03.Sequences.*
+import u03.Sequences.* 
+import Sequence.*
 import u03.Optionals.*
 import u03.Optionals.Optional.*
+import u04.moduletypes.Sets
 
 /*  Exercise 2: 
  *  Implement the below trait, and write a meaningful test.
@@ -68,6 +70,13 @@ object SchoolModel:
 
       def nameOfCourse(course: Course): String = course
 
-      def setTeacherToCourse(t: Teacher, course: Course): School = ???
+      def setTeacherToCourse(t: Teacher, course: Course): School = 
+        val updateTeachers = s.update(t, course)
+        school(updateTeachers, s.courses)
 
-      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
+      def update(t: Teacher, course: Course): Sequence[Teacher] = s.teachers match
+        case Cons(h, tail) if h == t => Cons(teacher(t.name, Cons(course, t.courses)), tail)
+        case Cons(head, tail) => Cons(head, school(tail, s.courses).update(t, course))
+        case _ => Nil()
+        
+      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = techer.courses

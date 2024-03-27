@@ -44,5 +44,5 @@ class SchoolModelTest{
     @Test def testSetTeacherToCourse() =
         val oop: Course = course("OOP")
         val viroli = teacher("Viroli", Cons(oop, Cons(pps, Nil())))
-        assertEquals(viroli, mySchool.addCourse("OOP").setTeacherToCourse(vir,oop).teacherByName("Viroli"))
+        assertEquals(Just(viroli), mySchool.addCourse("OOP").setTeacherToCourse(vir,oop).teacherByName("Viroli"))
 }
