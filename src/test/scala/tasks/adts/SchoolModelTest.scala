@@ -27,6 +27,7 @@ class SchoolModelTest{
 
     @Test def testTeacherByName() =
         assertEquals(Just(vir), mySchool.teacherByName("Viroli"))
+        assertEquals(Empty(), mySchool.teacherByName("Ghini"))
 
     @Test def testAddTeacher() =
         val mal: Teacher = teacher("Maltoni", Nil())

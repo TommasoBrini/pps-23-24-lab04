@@ -50,10 +50,11 @@ object SchoolModel:
 
     extension (s: School)  
       def addTeacher(name: String): School = 
-        val t = teacher(name, Nil())
-        school(Cons(t, s.teachers), s.courses)
-      
+        require(s.teacherByName(name) == Empty())
+        school(Cons(teacher(name, Nil()), s.teachers), s.courses)
+        
       def addCourse(name: String): School = 
+        require(s.courseByName(name) == Empty())
         school(s.teachers, Cons(name, s.courses))
       
       def teacherByName(name: String): Optional[Teacher] = s.teachers match
@@ -70,7 +71,9 @@ object SchoolModel:
 
       def nameOfCourse(course: Course): String = course
 
-      def setTeacherToCourse(t: Teacher, course: Course): School = 
+      def setTeacherToCourse(t: Teacher, course: Course): School =
+        if s.teacherByName(t.name) == Empty then s.addTeacher(t.name)  
+        if s.courseByName(course) == Empty then s.addCourse(course) 
         val updateTeachers = s.update(t, course)
         school(updateTeachers, s.courses)
 
