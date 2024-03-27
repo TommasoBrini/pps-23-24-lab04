@@ -28,7 +28,7 @@ object SchoolModel:
       def teacherByName(name: String): Optional[Teacher]
       def courseByName(name: String): Optional[Course]
       def nameOfTeacher(teacher: Teacher): String
-      def nameOfCourse(teacher: Teacher): String
+      def nameOfCourse(course: Course): String
       def setTeacherToCourse(teacher: Teacher, course: Course): School
       def coursesOfATeacher(teacher: Teacher): Sequence[Course]
     
@@ -66,7 +66,7 @@ object SchoolModel:
       
       def nameOfTeacher(teacher: Teacher): String = teacher.name
 
-      def nameOfCourse(teacher: Teacher): String = ???
-      
+      def nameOfCourse(course: Course): String = course
+
       def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
       def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
