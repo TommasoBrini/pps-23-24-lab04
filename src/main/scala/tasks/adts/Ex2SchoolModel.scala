@@ -79,4 +79,4 @@ object SchoolModel:
         case Cons(head, tail) => Cons(head, school(tail, s.courses).update(t, course))
         case _ => Nil()
         
-      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = techer.courses
+      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = teacher.courses
