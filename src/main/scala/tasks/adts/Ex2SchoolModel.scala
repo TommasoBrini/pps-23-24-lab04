@@ -68,5 +68,6 @@ object SchoolModel:
 
       def nameOfCourse(course: Course): String = course
 
-      def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
+      def setTeacherToCourse(t: Teacher, course: Course): School = ???
+
       def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
