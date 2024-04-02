@@ -58,12 +58,12 @@ object SchoolModel:
         school(s.teachers, Cons(name, s.courses))
       
       def teacherByName(name: String): Optional[Teacher] = s.teachers match
-        case Cons(h, _) if h.name.equals(name) => Just(h)
+        case Cons(h, _) if h.name == name => Just(h)
         case Cons(_, t) => SchoolImpl(t, Nil()).teacherByName(name)
         case _ => Empty()
 
       def courseByName(name: String): Optional[Course] = s.courses match
-        case Cons(h, t) if h.equals(name) => Just(name)
+        case Cons(h, _) if h == name => Just(name)
         case Cons(_, t) => SchoolImpl(s.teachers, t).courseByName(name)
         case _ => Empty()
       
