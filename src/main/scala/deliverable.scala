@@ -180,13 +180,13 @@ object Ex5Traversable:
 
     given Traversable[Optional] with
         def logAll[A](o: Optional[A]): Unit = o match
-        case Just(a) => log(a)
-        case _ => 
+            case Just(a) => log(a)
+            case _ => 
 
     given Traversable[Sequence] with
         def logAll[A](t: Sequence[A]): Unit = t match
-        case Cons(head, tail) => log(head); logAll(tail)
-        case _ => 
+            case Cons(head, tail) => log(head); logAll(tail)
+            case _ => 
 
 // TASK 6: svolto da solo
 object Ex6TryModel:
